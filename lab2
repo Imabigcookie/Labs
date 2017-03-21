@@ -1,0 +1,90 @@
+#include <iostream> 
+#include <conio.h> 
+using namespace std;
+
+class Complex{
+	double a, b;
+public:
+	Complex Read();
+	Complex add(const Complex c1) const;
+	Complex sub(const Complex c2) const;
+	Complex multInt(const int n) const;
+	Complex divInt(const int n) const;
+	Complex(double x = 0, double y = 0)
+	{
+		a = x;
+		b = y;
+	}
+	void print(std::ostream & stream) const
+	{
+		if (b >= 0)
+			stream << a << "+" << b << "i\n";
+		else
+			stream << a << b << "i\n";
+	}
+};
+Complex Complex::add(const Complex c1) const
+{
+	Complex r;
+	r.a = a + c1.a;
+	r.b = b + c1.b;
+	return r;
+}
+Complex Complex::sub(const Complex c2) const
+{
+	Complex l;
+	l.a = a - c2.a;
+	l.b = b - c2.b;
+	return l;
+}
+Complex Complex::multInt(const int n) const
+{
+	Complex q;
+	q.a = a * n;
+	q.b = b * n;
+	return q;
+}
+Complex Complex::divInt(const int n) const
+{
+	Complex t;
+	t.a = a / n;
+	t.b = b / n;
+	return t;
+}
+
+Complex Complex::Read(){
+	double x, y;
+	cout << "Действительная часть\n";
+	cin >> x;
+	cout << "Мнимая часть\n";
+	cin >> y;
+	Complex A = Complex(x, y);
+	return A;
+}
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	Complex a, b, c;
+	cout << "Первое число \n";
+	a = a.Read();
+	cout << "Второе число \n";
+	b = b.Read();
+	cout << "Число 1: ";
+	a.print(std::cout);
+	cout << "Число 2: ";
+	b.print(std::cout);
+	c = a.add(b);
+	cout << "Сумма: ";
+	c.print(std::cout);
+	c = a.sub(b);
+	cout << "Вычитание: ";
+	c.print(std::cout);
+	c = a.multInt(2);
+	cout << "Умножение 1ого числа на 2: ";
+	c.print(std::cout);
+	c = b.divInt(5);
+	cout << "Деление 2ого числа на 5: ";
+	c.print(std::cout);
+	system("pause");
+	return 0;
+}
